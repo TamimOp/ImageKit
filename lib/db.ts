@@ -17,7 +17,13 @@ export async function connectToDatabase() {
     return catched.conn;
   }
   if (!catched.promise) {
-    mongoose.connect(MONGODB_URI).then(() => mongoose.connection);
+    const opts = {
+      bufferCommands: true,
+      maxPoolSize: 10,
+    };
+    catched.promise = mongoose
+      .connect(MONGODB_URI!, opts)
+      .then(() => mongoose.connection);
   }
   try {
     catched.conn = await catched.promise;

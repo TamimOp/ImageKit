@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Scada } from "next/font/google";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -27,6 +28,7 @@ export async function connectToDatabase() {
   }
   try {
     catched.conn = await catched.promise;
+    Scada;
   } catch (error) {
     catched.promise = null;
     throw error;
